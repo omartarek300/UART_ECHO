@@ -1,0 +1,910 @@
+
+UART_driver.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         0000054a  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         0000000a  00800060  0000054a  000005de  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .bss          00000007  0080006a  0080006a  000005e8  2**0
+                  ALLOC
+  3 .comment      00000030  00000000  00000000  000005e8  2**0
+                  CONTENTS, READONLY
+  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  00000618  2**2
+                  CONTENTS, READONLY
+  5 .debug_aranges 000000b0  00000000  00000000  00000654  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_info   00000d06  00000000  00000000  00000704  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 000007d5  00000000  00000000  0000140a  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_line   00000ac0  00000000  00000000  00001bdf  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_frame  00000300  00000000  00000000  000026a0  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_str    000005ec  00000000  00000000  000029a0  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_loc    0000070c  00000000  00000000  00002f8c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_ranges 00000080  00000000  00000000  00003698  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
+   4:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   8:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  10:	0c 94 0c 01 	jmp	0x218	; 0x218 <__vector_4>
+  14:	0c 94 33 01 	jmp	0x266	; 0x266 <__vector_5>
+  18:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  1c:	0c 94 70 00 	jmp	0xe0	; 0xe0 <__vector_7>
+  20:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  24:	0c 94 97 00 	jmp	0x12e	; 0x12e <__vector_9>
+  28:	0c 94 be 00 	jmp	0x17c	; 0x17c <__vector_10>
+  2c:	0c 94 e5 00 	jmp	0x1ca	; 0x1ca <__vector_11>
+  30:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  34:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  38:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  3c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  40:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  44:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  48:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  4c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  50:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+
+00000054 <__ctors_end>:
+  54:	11 24       	eor	r1, r1
+  56:	1f be       	out	0x3f, r1	; 63
+  58:	cf e5       	ldi	r28, 0x5F	; 95
+  5a:	d8 e0       	ldi	r29, 0x08	; 8
+  5c:	de bf       	out	0x3e, r29	; 62
+  5e:	cd bf       	out	0x3d, r28	; 61
+
+00000060 <__do_copy_data>:
+  60:	10 e0       	ldi	r17, 0x00	; 0
+  62:	a0 e6       	ldi	r26, 0x60	; 96
+  64:	b0 e0       	ldi	r27, 0x00	; 0
+  66:	ea e4       	ldi	r30, 0x4A	; 74
+  68:	f5 e0       	ldi	r31, 0x05	; 5
+  6a:	02 c0       	rjmp	.+4      	; 0x70 <__do_copy_data+0x10>
+  6c:	05 90       	lpm	r0, Z+
+  6e:	0d 92       	st	X+, r0
+  70:	aa 36       	cpi	r26, 0x6A	; 106
+  72:	b1 07       	cpc	r27, r17
+  74:	d9 f7       	brne	.-10     	; 0x6c <__do_copy_data+0xc>
+
+00000076 <__do_clear_bss>:
+  76:	20 e0       	ldi	r18, 0x00	; 0
+  78:	aa e6       	ldi	r26, 0x6A	; 106
+  7a:	b0 e0       	ldi	r27, 0x00	; 0
+  7c:	01 c0       	rjmp	.+2      	; 0x80 <.do_clear_bss_start>
+
+0000007e <.do_clear_bss_loop>:
+  7e:	1d 92       	st	X+, r1
+
+00000080 <.do_clear_bss_start>:
+  80:	a1 37       	cpi	r26, 0x71	; 113
+  82:	b2 07       	cpc	r27, r18
+  84:	e1 f7       	brne	.-8      	; 0x7e <.do_clear_bss_loop>
+  86:	0e 94 49 00 	call	0x92	; 0x92 <main>
+  8a:	0c 94 a3 02 	jmp	0x546	; 0x546 <_exit>
+
+0000008e <__bad_interrupt>:
+  8e:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000092 <main>:
+ */ 
+
+#include "MCAL/uart.h"
+#include "MCAL/timer.h"
+int main(void)
+{
+  92:	cf 93       	push	r28
+  94:	df 93       	push	r29
+  96:	cd b7       	in	r28, 0x3d	; 61
+  98:	de b7       	in	r29, 0x3e	; 62
+  9a:	29 97       	sbiw	r28, 0x09	; 9
+  9c:	0f b6       	in	r0, 0x3f	; 63
+  9e:	f8 94       	cli
+  a0:	de bf       	out	0x3e, r29	; 62
+  a2:	0f be       	out	0x3f, r0	; 63
+  a4:	cd bf       	out	0x3d, r28	; 61
+    /*Replace with your application code */
+	uart_config conf = {9600, asynchronous,two_stop_bit,even_parity, eight_bit, Disable};
+  a6:	89 e0       	ldi	r24, 0x09	; 9
+  a8:	e0 e6       	ldi	r30, 0x60	; 96
+  aa:	f0 e0       	ldi	r31, 0x00	; 0
+  ac:	de 01       	movw	r26, r28
+  ae:	11 96       	adiw	r26, 0x01	; 1
+  b0:	01 90       	ld	r0, Z+
+  b2:	0d 92       	st	X+, r0
+  b4:	8a 95       	dec	r24
+  b6:	e1 f7       	brne	.-8      	; 0xb0 <main+0x1e>
+	uart_init(&conf);
+  b8:	ce 01       	movw	r24, r28
+  ba:	01 96       	adiw	r24, 0x01	; 1
+  bc:	0e 94 5a 01 	call	0x2b4	; 0x2b4 <uart_init>
+	uart_send_byte('E',&conf);
+  c0:	be 01       	movw	r22, r28
+  c2:	6f 5f       	subi	r22, 0xFF	; 255
+  c4:	7f 4f       	sbci	r23, 0xFF	; 255
+  c6:	85 e4       	ldi	r24, 0x45	; 69
+  c8:	0e 94 32 02 	call	0x464	; 0x464 <uart_send_byte>
+    while (1) 
+    {
+		uint8_t data = uart_receive_byte(&conf);
+  cc:	ce 01       	movw	r24, r28
+  ce:	01 96       	adiw	r24, 0x01	; 1
+  d0:	0e 94 4f 02 	call	0x49e	; 0x49e <uart_receive_byte>
+		uart_send_byte(data,&conf);
+  d4:	be 01       	movw	r22, r28
+  d6:	6f 5f       	subi	r22, 0xFF	; 255
+  d8:	7f 4f       	sbci	r23, 0xFF	; 255
+  da:	0e 94 32 02 	call	0x464	; 0x464 <uart_send_byte>
+  de:	f6 cf       	rjmp	.-20     	; 0xcc <main+0x3a>
+
+000000e0 <__vector_7>:
+static void(*Timer2_Call_Back_Ptr)(void)=NULL_PTR;
+/**************************************************************************************************************
+ *                                                 ISRs Timer0
+ * *************************************************************************************************************/
+void __vector_7(void)//ISR of COMPARE timer1
+{
+  e0:	1f 92       	push	r1
+  e2:	0f 92       	push	r0
+  e4:	0f b6       	in	r0, 0x3f	; 63
+  e6:	0f 92       	push	r0
+  e8:	11 24       	eor	r1, r1
+  ea:	2f 93       	push	r18
+  ec:	3f 93       	push	r19
+  ee:	4f 93       	push	r20
+  f0:	5f 93       	push	r21
+  f2:	6f 93       	push	r22
+  f4:	7f 93       	push	r23
+  f6:	8f 93       	push	r24
+  f8:	9f 93       	push	r25
+  fa:	af 93       	push	r26
+  fc:	bf 93       	push	r27
+  fe:	ef 93       	push	r30
+ 100:	ff 93       	push	r31
+       (*Timer1_Call_Back_Ptr)();
+ 102:	e0 91 6c 00 	lds	r30, 0x006C	; 0x80006c <Timer1_Call_Back_Ptr>
+ 106:	f0 91 6d 00 	lds	r31, 0x006D	; 0x80006d <Timer1_Call_Back_Ptr+0x1>
+ 10a:	09 95       	icall
+}
+ 10c:	ff 91       	pop	r31
+ 10e:	ef 91       	pop	r30
+ 110:	bf 91       	pop	r27
+ 112:	af 91       	pop	r26
+ 114:	9f 91       	pop	r25
+ 116:	8f 91       	pop	r24
+ 118:	7f 91       	pop	r23
+ 11a:	6f 91       	pop	r22
+ 11c:	5f 91       	pop	r21
+ 11e:	4f 91       	pop	r20
+ 120:	3f 91       	pop	r19
+ 122:	2f 91       	pop	r18
+ 124:	0f 90       	pop	r0
+ 126:	0f be       	out	0x3f, r0	; 63
+ 128:	0f 90       	pop	r0
+ 12a:	1f 90       	pop	r1
+ 12c:	18 95       	reti
+
+0000012e <__vector_9>:
+void __vector_9(void)//ISR of OVERFLOW timer1
+{
+ 12e:	1f 92       	push	r1
+ 130:	0f 92       	push	r0
+ 132:	0f b6       	in	r0, 0x3f	; 63
+ 134:	0f 92       	push	r0
+ 136:	11 24       	eor	r1, r1
+ 138:	2f 93       	push	r18
+ 13a:	3f 93       	push	r19
+ 13c:	4f 93       	push	r20
+ 13e:	5f 93       	push	r21
+ 140:	6f 93       	push	r22
+ 142:	7f 93       	push	r23
+ 144:	8f 93       	push	r24
+ 146:	9f 93       	push	r25
+ 148:	af 93       	push	r26
+ 14a:	bf 93       	push	r27
+ 14c:	ef 93       	push	r30
+ 14e:	ff 93       	push	r31
+	(*Timer1_Call_Back_Ptr)();
+ 150:	e0 91 6c 00 	lds	r30, 0x006C	; 0x80006c <Timer1_Call_Back_Ptr>
+ 154:	f0 91 6d 00 	lds	r31, 0x006D	; 0x80006d <Timer1_Call_Back_Ptr+0x1>
+ 158:	09 95       	icall
+}
+ 15a:	ff 91       	pop	r31
+ 15c:	ef 91       	pop	r30
+ 15e:	bf 91       	pop	r27
+ 160:	af 91       	pop	r26
+ 162:	9f 91       	pop	r25
+ 164:	8f 91       	pop	r24
+ 166:	7f 91       	pop	r23
+ 168:	6f 91       	pop	r22
+ 16a:	5f 91       	pop	r21
+ 16c:	4f 91       	pop	r20
+ 16e:	3f 91       	pop	r19
+ 170:	2f 91       	pop	r18
+ 172:	0f 90       	pop	r0
+ 174:	0f be       	out	0x3f, r0	; 63
+ 176:	0f 90       	pop	r0
+ 178:	1f 90       	pop	r1
+ 17a:	18 95       	reti
+
+0000017c <__vector_10>:
+void __vector_10(void)//ISR of COMPARE timer0
+{
+ 17c:	1f 92       	push	r1
+ 17e:	0f 92       	push	r0
+ 180:	0f b6       	in	r0, 0x3f	; 63
+ 182:	0f 92       	push	r0
+ 184:	11 24       	eor	r1, r1
+ 186:	2f 93       	push	r18
+ 188:	3f 93       	push	r19
+ 18a:	4f 93       	push	r20
+ 18c:	5f 93       	push	r21
+ 18e:	6f 93       	push	r22
+ 190:	7f 93       	push	r23
+ 192:	8f 93       	push	r24
+ 194:	9f 93       	push	r25
+ 196:	af 93       	push	r26
+ 198:	bf 93       	push	r27
+ 19a:	ef 93       	push	r30
+ 19c:	ff 93       	push	r31
+	(*Timer0_Call_Back_Ptr)();
+ 19e:	e0 91 6e 00 	lds	r30, 0x006E	; 0x80006e <Timer0_Call_Back_Ptr>
+ 1a2:	f0 91 6f 00 	lds	r31, 0x006F	; 0x80006f <Timer0_Call_Back_Ptr+0x1>
+ 1a6:	09 95       	icall
+}
+ 1a8:	ff 91       	pop	r31
+ 1aa:	ef 91       	pop	r30
+ 1ac:	bf 91       	pop	r27
+ 1ae:	af 91       	pop	r26
+ 1b0:	9f 91       	pop	r25
+ 1b2:	8f 91       	pop	r24
+ 1b4:	7f 91       	pop	r23
+ 1b6:	6f 91       	pop	r22
+ 1b8:	5f 91       	pop	r21
+ 1ba:	4f 91       	pop	r20
+ 1bc:	3f 91       	pop	r19
+ 1be:	2f 91       	pop	r18
+ 1c0:	0f 90       	pop	r0
+ 1c2:	0f be       	out	0x3f, r0	; 63
+ 1c4:	0f 90       	pop	r0
+ 1c6:	1f 90       	pop	r1
+ 1c8:	18 95       	reti
+
+000001ca <__vector_11>:
+void __vector_11(void)//ISR of OVERFLOW timer0
+{
+ 1ca:	1f 92       	push	r1
+ 1cc:	0f 92       	push	r0
+ 1ce:	0f b6       	in	r0, 0x3f	; 63
+ 1d0:	0f 92       	push	r0
+ 1d2:	11 24       	eor	r1, r1
+ 1d4:	2f 93       	push	r18
+ 1d6:	3f 93       	push	r19
+ 1d8:	4f 93       	push	r20
+ 1da:	5f 93       	push	r21
+ 1dc:	6f 93       	push	r22
+ 1de:	7f 93       	push	r23
+ 1e0:	8f 93       	push	r24
+ 1e2:	9f 93       	push	r25
+ 1e4:	af 93       	push	r26
+ 1e6:	bf 93       	push	r27
+ 1e8:	ef 93       	push	r30
+ 1ea:	ff 93       	push	r31
+	(*Timer0_Call_Back_Ptr)();
+ 1ec:	e0 91 6e 00 	lds	r30, 0x006E	; 0x80006e <Timer0_Call_Back_Ptr>
+ 1f0:	f0 91 6f 00 	lds	r31, 0x006F	; 0x80006f <Timer0_Call_Back_Ptr+0x1>
+ 1f4:	09 95       	icall
+}
+ 1f6:	ff 91       	pop	r31
+ 1f8:	ef 91       	pop	r30
+ 1fa:	bf 91       	pop	r27
+ 1fc:	af 91       	pop	r26
+ 1fe:	9f 91       	pop	r25
+ 200:	8f 91       	pop	r24
+ 202:	7f 91       	pop	r23
+ 204:	6f 91       	pop	r22
+ 206:	5f 91       	pop	r21
+ 208:	4f 91       	pop	r20
+ 20a:	3f 91       	pop	r19
+ 20c:	2f 91       	pop	r18
+ 20e:	0f 90       	pop	r0
+ 210:	0f be       	out	0x3f, r0	; 63
+ 212:	0f 90       	pop	r0
+ 214:	1f 90       	pop	r1
+ 216:	18 95       	reti
+
+00000218 <__vector_4>:
+void __vector_4(void)//ISR of COMPARE timer2
+{
+ 218:	1f 92       	push	r1
+ 21a:	0f 92       	push	r0
+ 21c:	0f b6       	in	r0, 0x3f	; 63
+ 21e:	0f 92       	push	r0
+ 220:	11 24       	eor	r1, r1
+ 222:	2f 93       	push	r18
+ 224:	3f 93       	push	r19
+ 226:	4f 93       	push	r20
+ 228:	5f 93       	push	r21
+ 22a:	6f 93       	push	r22
+ 22c:	7f 93       	push	r23
+ 22e:	8f 93       	push	r24
+ 230:	9f 93       	push	r25
+ 232:	af 93       	push	r26
+ 234:	bf 93       	push	r27
+ 236:	ef 93       	push	r30
+ 238:	ff 93       	push	r31
+	(*Timer2_Call_Back_Ptr)();
+ 23a:	e0 91 6a 00 	lds	r30, 0x006A	; 0x80006a <__data_end>
+ 23e:	f0 91 6b 00 	lds	r31, 0x006B	; 0x80006b <__data_end+0x1>
+ 242:	09 95       	icall
+}
+ 244:	ff 91       	pop	r31
+ 246:	ef 91       	pop	r30
+ 248:	bf 91       	pop	r27
+ 24a:	af 91       	pop	r26
+ 24c:	9f 91       	pop	r25
+ 24e:	8f 91       	pop	r24
+ 250:	7f 91       	pop	r23
+ 252:	6f 91       	pop	r22
+ 254:	5f 91       	pop	r21
+ 256:	4f 91       	pop	r20
+ 258:	3f 91       	pop	r19
+ 25a:	2f 91       	pop	r18
+ 25c:	0f 90       	pop	r0
+ 25e:	0f be       	out	0x3f, r0	; 63
+ 260:	0f 90       	pop	r0
+ 262:	1f 90       	pop	r1
+ 264:	18 95       	reti
+
+00000266 <__vector_5>:
+void __vector_5(void)//ISR of OVERFLOW timer2
+{
+ 266:	1f 92       	push	r1
+ 268:	0f 92       	push	r0
+ 26a:	0f b6       	in	r0, 0x3f	; 63
+ 26c:	0f 92       	push	r0
+ 26e:	11 24       	eor	r1, r1
+ 270:	2f 93       	push	r18
+ 272:	3f 93       	push	r19
+ 274:	4f 93       	push	r20
+ 276:	5f 93       	push	r21
+ 278:	6f 93       	push	r22
+ 27a:	7f 93       	push	r23
+ 27c:	8f 93       	push	r24
+ 27e:	9f 93       	push	r25
+ 280:	af 93       	push	r26
+ 282:	bf 93       	push	r27
+ 284:	ef 93       	push	r30
+ 286:	ff 93       	push	r31
+	(*Timer2_Call_Back_Ptr)();
+ 288:	e0 91 6a 00 	lds	r30, 0x006A	; 0x80006a <__data_end>
+ 28c:	f0 91 6b 00 	lds	r31, 0x006B	; 0x80006b <__data_end+0x1>
+ 290:	09 95       	icall
+}
+ 292:	ff 91       	pop	r31
+ 294:	ef 91       	pop	r30
+ 296:	bf 91       	pop	r27
+ 298:	af 91       	pop	r26
+ 29a:	9f 91       	pop	r25
+ 29c:	8f 91       	pop	r24
+ 29e:	7f 91       	pop	r23
+ 2a0:	6f 91       	pop	r22
+ 2a2:	5f 91       	pop	r21
+ 2a4:	4f 91       	pop	r20
+ 2a6:	3f 91       	pop	r19
+ 2a8:	2f 91       	pop	r18
+ 2aa:	0f 90       	pop	r0
+ 2ac:	0f be       	out	0x3f, r0	; 63
+ 2ae:	0f 90       	pop	r0
+ 2b0:	1f 90       	pop	r1
+ 2b2:	18 95       	reti
+
+000002b4 <uart_init>:
+ * Created: 9/22/2021 10:37:56 PM
+ *  Author: Omar
+ */ 
+#include "uart.h"
+void uart_init(uart_config* conf)
+{
+ 2b4:	fc 01       	movw	r30, r24
+	//select the mode
+	if(conf->mode == asynchronous)
+ 2b6:	84 81       	ldd	r24, Z+4	; 0x04
+ 2b8:	80 31       	cpi	r24, 0x10	; 16
+ 2ba:	61 f4       	brne	.+24     	; 0x2d4 <uart_init+0x20>
+	{
+		divisor = asynchronous;
+ 2bc:	80 93 70 00 	sts	0x0070, r24	; 0x800070 <divisor>
+		SETBIT(UCSRC, bit7);  // enable writing to UCSRC
+ 2c0:	80 b5       	in	r24, 0x20	; 32
+ 2c2:	80 68       	ori	r24, 0x80	; 128
+ 2c4:	80 bd       	out	0x20, r24	; 32
+		CLRBIT(UCSRC, bit6);  //asynchronous
+ 2c6:	80 b5       	in	r24, 0x20	; 32
+ 2c8:	8f 7b       	andi	r24, 0xBF	; 191
+ 2ca:	80 bd       	out	0x20, r24	; 32
+		CLRBIT(UCSRA, bit1); //double speed off
+ 2cc:	8b b1       	in	r24, 0x0b	; 11
+ 2ce:	8d 7f       	andi	r24, 0xFD	; 253
+ 2d0:	8b b9       	out	0x0b, r24	; 11
+ 2d2:	1b c0       	rjmp	.+54     	; 0x30a <uart_init+0x56>
+	}
+	else if(conf->mode == asynchronous_double_speed)
+ 2d4:	88 30       	cpi	r24, 0x08	; 8
+ 2d6:	61 f4       	brne	.+24     	; 0x2f0 <uart_init+0x3c>
+	{
+		divisor = asynchronous_double_speed;
+ 2d8:	80 93 70 00 	sts	0x0070, r24	; 0x800070 <divisor>
+		SETBIT(UCSRC, bit7); // enable writing to UCSRC
+ 2dc:	80 b5       	in	r24, 0x20	; 32
+ 2de:	80 68       	ori	r24, 0x80	; 128
+ 2e0:	80 bd       	out	0x20, r24	; 32
+		CLRBIT(UCSRC, bit6);  //asynchronous
+ 2e2:	80 b5       	in	r24, 0x20	; 32
+ 2e4:	8f 7b       	andi	r24, 0xBF	; 191
+ 2e6:	80 bd       	out	0x20, r24	; 32
+		SETBIT(UCSRA, bit1); //double speed on
+ 2e8:	8b b1       	in	r24, 0x0b	; 11
+ 2ea:	82 60       	ori	r24, 0x02	; 2
+ 2ec:	8b b9       	out	0x0b, r24	; 11
+ 2ee:	0d c0       	rjmp	.+26     	; 0x30a <uart_init+0x56>
+		
+	}
+	else if(conf->mode == synchronous)
+ 2f0:	82 30       	cpi	r24, 0x02	; 2
+ 2f2:	59 f4       	brne	.+22     	; 0x30a <uart_init+0x56>
+	{
+		divisor = synchronous;
+ 2f4:	80 93 70 00 	sts	0x0070, r24	; 0x800070 <divisor>
+		SETBIT(UCSRC, bit7); // enable writing to UCSRC
+ 2f8:	80 b5       	in	r24, 0x20	; 32
+ 2fa:	80 68       	ori	r24, 0x80	; 128
+ 2fc:	80 bd       	out	0x20, r24	; 32
+		SETBIT(UCSRC, bit6); 
+ 2fe:	80 b5       	in	r24, 0x20	; 32
+ 300:	80 64       	ori	r24, 0x40	; 64
+ 302:	80 bd       	out	0x20, r24	; 32
+		SETBIT(UCSRC, bit0);  //set UCPOL bit
+ 304:	80 b5       	in	r24, 0x20	; 32
+ 306:	81 60       	ori	r24, 0x01	; 1
+ 308:	80 bd       	out	0x20, r24	; 32
+	}
+	/*enable interrupt*/
+	if(conf->iterrupt = Enable)
+ 30a:	81 e0       	ldi	r24, 0x01	; 1
+ 30c:	80 87       	std	Z+8, r24	; 0x08
+	{
+		SETBIT(UCSRB, bit7); //RX Complete Interrupt Enable
+ 30e:	8a b1       	in	r24, 0x0a	; 10
+ 310:	80 68       	ori	r24, 0x80	; 128
+ 312:	8a b9       	out	0x0a, r24	; 10
+		SETBIT(UCSRB, bit6); //TX Complete Interrupt Enable
+ 314:	8a b1       	in	r24, 0x0a	; 10
+ 316:	80 64       	ori	r24, 0x40	; 64
+ 318:	8a b9       	out	0x0a, r24	; 10
+		SETBIT(UCSRB, bit5); //Data Register Empty Interrupt Enable
+ 31a:	8a b1       	in	r24, 0x0a	; 10
+ 31c:	80 62       	ori	r24, 0x20	; 32
+ 31e:	8a b9       	out	0x0a, r24	; 10
+	}
+	
+	/* Enable receiver and transmitter */
+	SETBIT(UCSRB, bit4);
+ 320:	8a b1       	in	r24, 0x0a	; 10
+ 322:	80 61       	ori	r24, 0x10	; 16
+ 324:	8a b9       	out	0x0a, r24	; 10
+	SETBIT(UCSRB, bit3);
+ 326:	8a b1       	in	r24, 0x0a	; 10
+ 328:	88 60       	ori	r24, 0x08	; 8
+ 32a:	8a b9       	out	0x0a, r24	; 10
+	
+	/* Set frame format: 8data, 2stop bit */
+	SETBIT(UCSRC, bit7); // enable writing to UCSRC
+ 32c:	80 b5       	in	r24, 0x20	; 32
+ 32e:	80 68       	ori	r24, 0x80	; 128
+ 330:	80 bd       	out	0x20, r24	; 32
+	switch(conf->parity) // select parity
+ 332:	86 81       	ldd	r24, Z+6	; 0x06
+ 334:	81 30       	cpi	r24, 0x01	; 1
+ 336:	69 f0       	breq	.+26     	; 0x352 <uart_init+0x9e>
+ 338:	28 f0       	brcs	.+10     	; 0x344 <uart_init+0x90>
+ 33a:	82 30       	cpi	r24, 0x02	; 2
+ 33c:	89 f0       	breq	.+34     	; 0x360 <uart_init+0xac>
+ 33e:	83 30       	cpi	r24, 0x03	; 3
+ 340:	b1 f0       	breq	.+44     	; 0x36e <uart_init+0xba>
+ 342:	1b c0       	rjmp	.+54     	; 0x37a <uart_init+0xc6>
+	{
+		case disabled:
+			CLRBIT(UCSRC, bit4);
+ 344:	80 b5       	in	r24, 0x20	; 32
+ 346:	8f 7e       	andi	r24, 0xEF	; 239
+ 348:	80 bd       	out	0x20, r24	; 32
+			CLRBIT(UCSRC, bit5);
+ 34a:	80 b5       	in	r24, 0x20	; 32
+ 34c:	8f 7d       	andi	r24, 0xDF	; 223
+ 34e:	80 bd       	out	0x20, r24	; 32
+			break;
+ 350:	14 c0       	rjmp	.+40     	; 0x37a <uart_init+0xc6>
+		case reserved:
+			SETBIT(UCSRC, bit4);
+ 352:	80 b5       	in	r24, 0x20	; 32
+ 354:	80 61       	ori	r24, 0x10	; 16
+ 356:	80 bd       	out	0x20, r24	; 32
+			CLRBIT(UCSRC, bit5);
+ 358:	80 b5       	in	r24, 0x20	; 32
+ 35a:	8f 7d       	andi	r24, 0xDF	; 223
+ 35c:	80 bd       	out	0x20, r24	; 32
+			break;
+ 35e:	0d c0       	rjmp	.+26     	; 0x37a <uart_init+0xc6>
+		case even_parity:
+			CLRBIT(UCSRC, bit4);
+ 360:	80 b5       	in	r24, 0x20	; 32
+ 362:	8f 7e       	andi	r24, 0xEF	; 239
+ 364:	80 bd       	out	0x20, r24	; 32
+			SETBIT(UCSRC, bit5);
+ 366:	80 b5       	in	r24, 0x20	; 32
+ 368:	80 62       	ori	r24, 0x20	; 32
+ 36a:	80 bd       	out	0x20, r24	; 32
+			break;
+ 36c:	06 c0       	rjmp	.+12     	; 0x37a <uart_init+0xc6>
+		case odd_parity:
+			SETBIT(UCSRC, bit4);
+ 36e:	80 b5       	in	r24, 0x20	; 32
+ 370:	80 61       	ori	r24, 0x10	; 16
+ 372:	80 bd       	out	0x20, r24	; 32
+			SETBIT(UCSRC, bit5);
+ 374:	80 b5       	in	r24, 0x20	; 32
+ 376:	80 62       	ori	r24, 0x20	; 32
+ 378:	80 bd       	out	0x20, r24	; 32
+			break;	
+	}
+	// stop bit
+	if(conf->stop_bit_en == one_stop_bit)
+ 37a:	85 81       	ldd	r24, Z+5	; 0x05
+ 37c:	81 11       	cpse	r24, r1
+ 37e:	07 c0       	rjmp	.+14     	; 0x38e <uart_init+0xda>
+	{
+		SETBIT(UCSRC, bit7); // enable writing to UCSRC
+ 380:	80 b5       	in	r24, 0x20	; 32
+ 382:	80 68       	ori	r24, 0x80	; 128
+ 384:	80 bd       	out	0x20, r24	; 32
+		CLRBIT(UCSRC,bit3);
+ 386:	80 b5       	in	r24, 0x20	; 32
+ 388:	87 7f       	andi	r24, 0xF7	; 247
+ 38a:	80 bd       	out	0x20, r24	; 32
+ 38c:	08 c0       	rjmp	.+16     	; 0x39e <uart_init+0xea>
+	}
+	else if(conf->stop_bit_en == two_stop_bit)
+ 38e:	81 30       	cpi	r24, 0x01	; 1
+ 390:	31 f4       	brne	.+12     	; 0x39e <uart_init+0xea>
+	{
+		SETBIT(UCSRC, bit7); // enable writing to UCSRC
+ 392:	80 b5       	in	r24, 0x20	; 32
+ 394:	80 68       	ori	r24, 0x80	; 128
+ 396:	80 bd       	out	0x20, r24	; 32
+		SETBIT(UCSRC,bit3);
+ 398:	80 b5       	in	r24, 0x20	; 32
+ 39a:	88 60       	ori	r24, 0x08	; 8
+ 39c:	80 bd       	out	0x20, r24	; 32
+	}
+	SETBIT(UCSRC, bit7); // enable writing to UCSRC
+ 39e:	80 b5       	in	r24, 0x20	; 32
+ 3a0:	80 68       	ori	r24, 0x80	; 128
+ 3a2:	80 bd       	out	0x20, r24	; 32
+	// select data bits in frame
+	switch(conf->data_bits)
+ 3a4:	87 81       	ldd	r24, Z+7	; 0x07
+ 3a6:	82 30       	cpi	r24, 0x02	; 2
+ 3a8:	f9 f0       	breq	.+62     	; 0x3e8 <uart_init+0x134>
+ 3aa:	28 f4       	brcc	.+10     	; 0x3b6 <uart_init+0x102>
+ 3ac:	88 23       	and	r24, r24
+ 3ae:	41 f0       	breq	.+16     	; 0x3c0 <uart_init+0x10c>
+ 3b0:	81 30       	cpi	r24, 0x01	; 1
+ 3b2:	81 f0       	breq	.+32     	; 0x3d4 <uart_init+0x120>
+ 3b4:	36 c0       	rjmp	.+108    	; 0x422 <__EEPROM_REGION_LENGTH__+0x22>
+ 3b6:	83 30       	cpi	r24, 0x03	; 3
+ 3b8:	09 f1       	breq	.+66     	; 0x3fc <uart_init+0x148>
+ 3ba:	87 30       	cpi	r24, 0x07	; 7
+ 3bc:	49 f1       	breq	.+82     	; 0x410 <__EEPROM_REGION_LENGTH__+0x10>
+ 3be:	31 c0       	rjmp	.+98     	; 0x422 <__EEPROM_REGION_LENGTH__+0x22>
+	{
+		case five_bit:
+			CLRBIT(UCSRC, bit0);
+ 3c0:	80 b5       	in	r24, 0x20	; 32
+ 3c2:	8e 7f       	andi	r24, 0xFE	; 254
+ 3c4:	80 bd       	out	0x20, r24	; 32
+			CLRBIT(UCSRC, bit1);
+ 3c6:	80 b5       	in	r24, 0x20	; 32
+ 3c8:	8d 7f       	andi	r24, 0xFD	; 253
+ 3ca:	80 bd       	out	0x20, r24	; 32
+			CLRBIT(UCSRB, bit2);
+ 3cc:	8a b1       	in	r24, 0x0a	; 10
+ 3ce:	8b 7f       	andi	r24, 0xFB	; 251
+ 3d0:	8a b9       	out	0x0a, r24	; 10
+			break;
+ 3d2:	27 c0       	rjmp	.+78     	; 0x422 <__EEPROM_REGION_LENGTH__+0x22>
+		case six_bit:
+			SETBIT(UCSRC, bit0);
+ 3d4:	80 b5       	in	r24, 0x20	; 32
+ 3d6:	81 60       	ori	r24, 0x01	; 1
+ 3d8:	80 bd       	out	0x20, r24	; 32
+			CLRBIT(UCSRC, bit1);
+ 3da:	80 b5       	in	r24, 0x20	; 32
+ 3dc:	8d 7f       	andi	r24, 0xFD	; 253
+ 3de:	80 bd       	out	0x20, r24	; 32
+			CLRBIT(UCSRB, bit2);
+ 3e0:	8a b1       	in	r24, 0x0a	; 10
+ 3e2:	8b 7f       	andi	r24, 0xFB	; 251
+ 3e4:	8a b9       	out	0x0a, r24	; 10
+			break;
+ 3e6:	1d c0       	rjmp	.+58     	; 0x422 <__EEPROM_REGION_LENGTH__+0x22>
+		case seven_bit:
+			CLRBIT(UCSRC, bit0);
+ 3e8:	80 b5       	in	r24, 0x20	; 32
+ 3ea:	8e 7f       	andi	r24, 0xFE	; 254
+ 3ec:	80 bd       	out	0x20, r24	; 32
+			SETBIT(UCSRC, bit1);
+ 3ee:	80 b5       	in	r24, 0x20	; 32
+ 3f0:	82 60       	ori	r24, 0x02	; 2
+ 3f2:	80 bd       	out	0x20, r24	; 32
+			CLRBIT(UCSRB, bit2);
+ 3f4:	8a b1       	in	r24, 0x0a	; 10
+ 3f6:	8b 7f       	andi	r24, 0xFB	; 251
+ 3f8:	8a b9       	out	0x0a, r24	; 10
+			break;
+ 3fa:	13 c0       	rjmp	.+38     	; 0x422 <__EEPROM_REGION_LENGTH__+0x22>
+		case eight_bit:
+			SETBIT(UCSRC, bit0);
+ 3fc:	80 b5       	in	r24, 0x20	; 32
+ 3fe:	81 60       	ori	r24, 0x01	; 1
+ 400:	80 bd       	out	0x20, r24	; 32
+			SETBIT(UCSRC, bit1);
+ 402:	80 b5       	in	r24, 0x20	; 32
+ 404:	82 60       	ori	r24, 0x02	; 2
+ 406:	80 bd       	out	0x20, r24	; 32
+			CLRBIT(UCSRB, bit2);
+ 408:	8a b1       	in	r24, 0x0a	; 10
+ 40a:	8b 7f       	andi	r24, 0xFB	; 251
+ 40c:	8a b9       	out	0x0a, r24	; 10
+			break;
+ 40e:	09 c0       	rjmp	.+18     	; 0x422 <__EEPROM_REGION_LENGTH__+0x22>
+		case nine_bit:
+			SETBIT(UCSRC, bit0);
+ 410:	80 b5       	in	r24, 0x20	; 32
+ 412:	81 60       	ori	r24, 0x01	; 1
+ 414:	80 bd       	out	0x20, r24	; 32
+			SETBIT(UCSRC, bit1);
+ 416:	80 b5       	in	r24, 0x20	; 32
+ 418:	82 60       	ori	r24, 0x02	; 2
+ 41a:	80 bd       	out	0x20, r24	; 32
+			SETBIT(UCSRB, bit2);
+ 41c:	8a b1       	in	r24, 0x0a	; 10
+ 41e:	84 60       	ori	r24, 0x04	; 4
+ 420:	8a b9       	out	0x0a, r24	; 10
+			break;	
+	}
+	/* Set baud rate */
+	uint32_t UBRR_value = ((F_CPU/(divisor * conf->baud_rate)) - 1);
+ 422:	20 81       	ld	r18, Z
+ 424:	31 81       	ldd	r19, Z+1	; 0x01
+ 426:	42 81       	ldd	r20, Z+2	; 0x02
+ 428:	53 81       	ldd	r21, Z+3	; 0x03
+ 42a:	a0 91 70 00 	lds	r26, 0x0070	; 0x800070 <divisor>
+ 42e:	b0 e0       	ldi	r27, 0x00	; 0
+ 430:	0e 94 89 02 	call	0x512	; 0x512 <__muluhisi3>
+ 434:	9b 01       	movw	r18, r22
+ 436:	ac 01       	movw	r20, r24
+ 438:	60 e0       	ldi	r22, 0x00	; 0
+ 43a:	72 e1       	ldi	r23, 0x12	; 18
+ 43c:	8a e7       	ldi	r24, 0x7A	; 122
+ 43e:	90 e0       	ldi	r25, 0x00	; 0
+ 440:	0e 94 67 02 	call	0x4ce	; 0x4ce <__udivmodsi4>
+ 444:	ba 01       	movw	r22, r20
+ 446:	a9 01       	movw	r20, r18
+ 448:	41 50       	subi	r20, 0x01	; 1
+ 44a:	51 09       	sbc	r21, r1
+ 44c:	61 09       	sbc	r22, r1
+ 44e:	71 09       	sbc	r23, r1
+	CLRBIT(UCSRC, bit7); // enable writing to UBRR
+ 450:	80 b5       	in	r24, 0x20	; 32
+ 452:	8f 77       	andi	r24, 0x7F	; 127
+ 454:	80 bd       	out	0x20, r24	; 32
+	UBRRH = (uint8_t)(UBRR_value >> 8);
+ 456:	bb 27       	eor	r27, r27
+ 458:	a7 2f       	mov	r26, r23
+ 45a:	96 2f       	mov	r25, r22
+ 45c:	85 2f       	mov	r24, r21
+ 45e:	80 bd       	out	0x20, r24	; 32
+	UBRRL = (uint8_t)(UBRR_value);
+ 460:	49 b9       	out	0x09, r20	; 9
+ 462:	08 95       	ret
+
+00000464 <uart_send_byte>:
+}
+void uart_send_byte(uint8_t data, uart_config* conf)
+{
+	if(conf->data_bits == eight_bit || conf->data_bits == five_bit || conf->data_bits == six_bit || conf->data_bits == seven_bit)
+ 464:	fb 01       	movw	r30, r22
+ 466:	97 81       	ldd	r25, Z+7	; 0x07
+ 468:	93 30       	cpi	r25, 0x03	; 3
+ 46a:	31 f0       	breq	.+12     	; 0x478 <uart_send_byte+0x14>
+ 46c:	99 23       	and	r25, r25
+ 46e:	21 f0       	breq	.+8      	; 0x478 <uart_send_byte+0x14>
+ 470:	91 30       	cpi	r25, 0x01	; 1
+ 472:	11 f0       	breq	.+4      	; 0x478 <uart_send_byte+0x14>
+ 474:	92 30       	cpi	r25, 0x02	; 2
+ 476:	39 f4       	brne	.+14     	; 0x486 <uart_send_byte+0x22>
+	{
+		/* Wait for empty transmit buffer */
+		while ( !( UCSRA & (1<<bit5)) );
+ 478:	5d 9b       	sbis	0x0b, 5	; 11
+ 47a:	fe cf       	rjmp	.-4      	; 0x478 <uart_send_byte+0x14>
+		/* Put data into buffer, sends the data */
+		UDR = data;
+ 47c:	8c b9       	out	0x0c, r24	; 12
+		SETBIT(UCSRA,6);
+ 47e:	8b b1       	in	r24, 0x0b	; 11
+ 480:	80 64       	ori	r24, 0x40	; 64
+ 482:	8b b9       	out	0x0b, r24	; 11
+ 484:	08 95       	ret
+	}
+	else if(conf->data_bits == nine_bit)
+ 486:	97 30       	cpi	r25, 0x07	; 7
+ 488:	49 f4       	brne	.+18     	; 0x49c <uart_send_byte+0x38>
+	{
+		/* Wait for empty transmit buffer */
+		while ( !( UCSRA & (1<<bit5)));
+ 48a:	5d 9b       	sbis	0x0b, 5	; 11
+ 48c:	fe cf       	rjmp	.-4      	; 0x48a <uart_send_byte+0x26>
+		/* Copy 9th bit to TXB8 */
+		CLRBIT(UCSRB, bit0);
+ 48e:	9a b1       	in	r25, 0x0a	; 10
+ 490:	9e 7f       	andi	r25, 0xFE	; 254
+ 492:	9a b9       	out	0x0a, r25	; 10
+		SETBIT(UCSRB, bit0);
+ 494:	9a b1       	in	r25, 0x0a	; 10
+ 496:	91 60       	ori	r25, 0x01	; 1
+ 498:	9a b9       	out	0x0a, r25	; 10
+		/* Put data into buffer, sends the data */
+		UDR = data;
+ 49a:	8c b9       	out	0x0c, r24	; 12
+ 49c:	08 95       	ret
+
+0000049e <uart_receive_byte>:
+	}
+}
+uint8_t uart_receive_byte(uart_config* conf)
+{
+	if(conf->data_bits == eight_bit || conf->data_bits == five_bit || conf->data_bits == six_bit || conf->data_bits == seven_bit)
+ 49e:	fc 01       	movw	r30, r24
+ 4a0:	87 81       	ldd	r24, Z+7	; 0x07
+ 4a2:	83 30       	cpi	r24, 0x03	; 3
+ 4a4:	31 f0       	breq	.+12     	; 0x4b2 <uart_receive_byte+0x14>
+ 4a6:	88 23       	and	r24, r24
+ 4a8:	21 f0       	breq	.+8      	; 0x4b2 <uart_receive_byte+0x14>
+ 4aa:	81 30       	cpi	r24, 0x01	; 1
+ 4ac:	11 f0       	breq	.+4      	; 0x4b2 <uart_receive_byte+0x14>
+ 4ae:	82 30       	cpi	r24, 0x02	; 2
+ 4b0:	21 f4       	brne	.+8      	; 0x4ba <uart_receive_byte+0x1c>
+	{
+		/* Wait for data to be received */
+		while ( !(UCSRA & (1<<bit7)));
+ 4b2:	5f 9b       	sbis	0x0b, 7	; 11
+ 4b4:	fe cf       	rjmp	.-4      	; 0x4b2 <uart_receive_byte+0x14>
+		/* Get and return received data from buffer */
+		return UDR;
+ 4b6:	8c b1       	in	r24, 0x0c	; 12
+ 4b8:	08 95       	ret
+	}
+	else if(conf->data_bits == nine_bit)
+ 4ba:	87 30       	cpi	r24, 0x07	; 7
+ 4bc:	39 f4       	brne	.+14     	; 0x4cc <uart_receive_byte+0x2e>
+	{
+		uint8_t status, ninth_bit, data_eight_bits;
+		/* Wait for data to be received */
+		while ( !(UCSRA & (1<<bit7)) )
+ 4be:	5f 9b       	sbis	0x0b, 7	; 11
+ 4c0:	fe cf       	rjmp	.-4      	; 0x4be <uart_receive_byte+0x20>
+		;
+		/* Get status and 9th bit, then data */
+		/* from buffer */
+		status = UCSRA;
+ 4c2:	8b b1       	in	r24, 0x0b	; 11
+		ninth_bit = UCSRB;
+ 4c4:	8a b1       	in	r24, 0x0a	; 10
+		data_eight_bits = UDR;
+ 4c6:	8c b1       	in	r24, 0x0c	; 12
+		/* If error, return -1 */
+		if ( status & (1<<bit4)|(1<<bit3)|(1<<bit2))
+		return -1;
+ 4c8:	8f ef       	ldi	r24, 0xFF	; 255
+ 4ca:	08 95       	ret
+		/* Filter the 9th bit, then return */
+		ninth_bit = (ninth_bit >> 1) & 0x01;
+		return ((ninth_bit << 8) | data_eight_bits);
+	}
+ 4cc:	08 95       	ret
+
+000004ce <__udivmodsi4>:
+ 4ce:	a1 e2       	ldi	r26, 0x21	; 33
+ 4d0:	1a 2e       	mov	r1, r26
+ 4d2:	aa 1b       	sub	r26, r26
+ 4d4:	bb 1b       	sub	r27, r27
+ 4d6:	fd 01       	movw	r30, r26
+ 4d8:	0d c0       	rjmp	.+26     	; 0x4f4 <__udivmodsi4_ep>
+
+000004da <__udivmodsi4_loop>:
+ 4da:	aa 1f       	adc	r26, r26
+ 4dc:	bb 1f       	adc	r27, r27
+ 4de:	ee 1f       	adc	r30, r30
+ 4e0:	ff 1f       	adc	r31, r31
+ 4e2:	a2 17       	cp	r26, r18
+ 4e4:	b3 07       	cpc	r27, r19
+ 4e6:	e4 07       	cpc	r30, r20
+ 4e8:	f5 07       	cpc	r31, r21
+ 4ea:	20 f0       	brcs	.+8      	; 0x4f4 <__udivmodsi4_ep>
+ 4ec:	a2 1b       	sub	r26, r18
+ 4ee:	b3 0b       	sbc	r27, r19
+ 4f0:	e4 0b       	sbc	r30, r20
+ 4f2:	f5 0b       	sbc	r31, r21
+
+000004f4 <__udivmodsi4_ep>:
+ 4f4:	66 1f       	adc	r22, r22
+ 4f6:	77 1f       	adc	r23, r23
+ 4f8:	88 1f       	adc	r24, r24
+ 4fa:	99 1f       	adc	r25, r25
+ 4fc:	1a 94       	dec	r1
+ 4fe:	69 f7       	brne	.-38     	; 0x4da <__udivmodsi4_loop>
+ 500:	60 95       	com	r22
+ 502:	70 95       	com	r23
+ 504:	80 95       	com	r24
+ 506:	90 95       	com	r25
+ 508:	9b 01       	movw	r18, r22
+ 50a:	ac 01       	movw	r20, r24
+ 50c:	bd 01       	movw	r22, r26
+ 50e:	cf 01       	movw	r24, r30
+ 510:	08 95       	ret
+
+00000512 <__muluhisi3>:
+ 512:	0e 94 94 02 	call	0x528	; 0x528 <__umulhisi3>
+ 516:	a5 9f       	mul	r26, r21
+ 518:	90 0d       	add	r25, r0
+ 51a:	b4 9f       	mul	r27, r20
+ 51c:	90 0d       	add	r25, r0
+ 51e:	a4 9f       	mul	r26, r20
+ 520:	80 0d       	add	r24, r0
+ 522:	91 1d       	adc	r25, r1
+ 524:	11 24       	eor	r1, r1
+ 526:	08 95       	ret
+
+00000528 <__umulhisi3>:
+ 528:	a2 9f       	mul	r26, r18
+ 52a:	b0 01       	movw	r22, r0
+ 52c:	b3 9f       	mul	r27, r19
+ 52e:	c0 01       	movw	r24, r0
+ 530:	a3 9f       	mul	r26, r19
+ 532:	70 0d       	add	r23, r0
+ 534:	81 1d       	adc	r24, r1
+ 536:	11 24       	eor	r1, r1
+ 538:	91 1d       	adc	r25, r1
+ 53a:	b2 9f       	mul	r27, r18
+ 53c:	70 0d       	add	r23, r0
+ 53e:	81 1d       	adc	r24, r1
+ 540:	11 24       	eor	r1, r1
+ 542:	91 1d       	adc	r25, r1
+ 544:	08 95       	ret
+
+00000546 <_exit>:
+ 546:	f8 94       	cli
+
+00000548 <__stop_program>:
+ 548:	ff cf       	rjmp	.-2      	; 0x548 <__stop_program>
