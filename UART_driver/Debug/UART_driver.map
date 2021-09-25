@@ -34,6 +34,7 @@ c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/..
 Allocating common symbols
 Common symbol       size              file
 
+conf                0x7               main.o
 divisor             0x1               main.o
 
 Discarded input sections
@@ -82,6 +83,8 @@ Discarded input sections
  .text          0x00000000        0x0 MCAL/uart.o
  .data          0x00000000        0x0 MCAL/uart.o
  .bss           0x00000000        0x0 MCAL/uart.o
+ .text.uart_setCallback
+                0x00000000       0x2a MCAL/uart.o
  .text          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(divsf3.o)
  .data          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(divsf3.o)
  .bss           0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(divsf3.o)
@@ -339,7 +342,7 @@ END GROUP
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000      0x50e
+.text           0x00000000      0x6e6
  *(.vectors)
  .vectors       0x00000000       0x54 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.6.364/gcc/dev/atmega32/avr5/crtatmega32.o
                 0x00000000                __vector_default
@@ -403,55 +406,67 @@ END GROUP
                 0x0000008e                __bad_interrupt
                 0x0000008e                __vector_6
                 0x0000008e                __vector_3
-                0x0000008e                __vector_13
                 0x0000008e                __vector_17
                 0x0000008e                __vector_19
                 0x0000008e                __vector_2
-                0x0000008e                __vector_15
                 0x0000008e                __vector_8
-                0x0000008e                __vector_14
                 0x0000008e                __vector_16
                 0x0000008e                __vector_18
                 0x0000008e                __vector_20
                 0x00000092                . = ALIGN (0x2)
  *(.text.*)
- .text.main     0x00000092       0x4e main.o
+ .text.main     0x00000092       0x56 main.o
                 0x00000092                main
  .text.__vector_7
-                0x000000e0       0x4e MCAL/timer.o
-                0x000000e0                __vector_7
+                0x000000e8       0x4e MCAL/timer.o
+                0x000000e8                __vector_7
  .text.__vector_9
-                0x0000012e       0x4e MCAL/timer.o
-                0x0000012e                __vector_9
+                0x00000136       0x4e MCAL/timer.o
+                0x00000136                __vector_9
  .text.__vector_10
-                0x0000017c       0x4e MCAL/timer.o
-                0x0000017c                __vector_10
+                0x00000184       0x4e MCAL/timer.o
+                0x00000184                __vector_10
  .text.__vector_11
-                0x000001ca       0x4e MCAL/timer.o
-                0x000001ca                __vector_11
+                0x000001d2       0x4e MCAL/timer.o
+                0x000001d2                __vector_11
  .text.__vector_4
-                0x00000218       0x4e MCAL/timer.o
-                0x00000218                __vector_4
+                0x00000220       0x4e MCAL/timer.o
+                0x00000220                __vector_4
  .text.__vector_5
-                0x00000266       0x4e MCAL/timer.o
-                0x00000266                __vector_5
+                0x0000026e       0x4e MCAL/timer.o
+                0x0000026e                __vector_5
+ .text.__vector_13
+                0x000002bc       0x4e MCAL/uart.o
+                0x000002bc                __vector_13
+ .text.__vector_14
+                0x0000030a       0x4e MCAL/uart.o
+                0x0000030a                __vector_14
+ .text.__vector_15
+                0x00000358       0x4e MCAL/uart.o
+                0x00000358                __vector_15
  .text.uart_init
-                0x000002b4      0x1a2 MCAL/uart.o
-                0x000002b4                uart_init
+                0x000003a6      0x1f2 MCAL/uart.o
+                0x000003a6                uart_init
  .text.uart_send_byte
-                0x00000456       0x3a MCAL/uart.o
-                0x00000456                uart_send_byte
+                0x00000598       0x3a MCAL/uart.o
+                0x00000598                uart_send_byte
  .text.uart_receive_byte
-                0x00000490       0x36 MCAL/uart.o
-                0x00000490                uart_receive_byte
+                0x000005d2       0x64 MCAL/uart.o
+                0x000005d2                uart_receive_byte
+ .text.uart_send_string
+                0x00000636       0x26 MCAL/uart.o
+                0x00000636                uart_send_string
+ .text.uart_receive_string
+                0x0000065c       0x42 MCAL/uart.o
+                0x0000065c                uart_receive_string
  .text.libgcc.div
-                0x000004c6       0x44 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_udivmodsi4.o)
-                0x000004c6                __udivmodsi4
-                0x0000050a                . = ALIGN (0x2)
+                0x0000069e       0x44 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_udivmodsi4.o)
+                0x0000069e                __udivmodsi4
+                0x000006e2                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x0000050a        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
-                0x0000050a                _exit
-                0x0000050a                exit
+ .fini9         0x000006e2        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
+                0x000006e2                _exit
+                0x000006e2                exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -470,11 +485,11 @@ END GROUP
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x0000050a        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
+ .fini0         0x000006e2        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
  *(.fini0)
-                0x0000050e                _etext = .
+                0x000006e6                _etext = .
 
-.data           0x00800060        0x8 load address 0x0000050e
+.data           0x00800060        0x8 load address 0x000006e6
                 0x00800060                PROVIDE (__data_start, .)
  *(.data)
  *(.data*)
@@ -482,13 +497,14 @@ END GROUP
  *(.rodata)
  .rodata        0x00800060        0x7 main.o
  *(.rodata*)
+ .rodata.str1.1
+                0x00800067        0x1 main.o
  *(.gnu.linkonce.r*)
                 0x00800068                . = ALIGN (0x2)
- *fill*         0x00800067        0x1 
                 0x00800068                _edata = .
                 0x00800068                PROVIDE (__data_end, .)
 
-.bss            0x00800068        0x7
+.bss            0x00800068       0x14
                 0x00800068                PROVIDE (__bss_start, .)
  *(.bss)
  *(.bss*)
@@ -498,18 +514,25 @@ END GROUP
                 0x0080006a        0x2 MCAL/timer.o
  .bss.Timer0_Call_Back_Ptr
                 0x0080006c        0x2 MCAL/timer.o
+ .bss.DATA_REGEmpty_CALL_BACK
+                0x0080006e        0x2 MCAL/uart.o
+ .bss.TX_CALL_BACK
+                0x00800070        0x2 MCAL/uart.o
+ .bss.RX_CALL_BACK
+                0x00800072        0x2 MCAL/uart.o
  *(COMMON)
- COMMON         0x0080006e        0x1 main.o
-                0x0080006e                divisor
-                0x0080006f                PROVIDE (__bss_end, .)
-                0x0000050e                __data_load_start = LOADADDR (.data)
-                0x00000516                __data_load_end = (__data_load_start + SIZEOF (.data))
+ COMMON         0x00800074        0x8 main.o
+                0x00800074                conf
+                0x0080007b                divisor
+                0x0080007c                PROVIDE (__bss_end, .)
+                0x000006e6                __data_load_start = LOADADDR (.data)
+                0x000006ee                __data_load_end = (__data_load_start + SIZEOF (.data))
 
-.noinit         0x0080006f        0x0
+.noinit         0x0080007c        0x0
                 [!provide]                PROVIDE (__noinit_start, .)
  *(.noinit*)
                 [!provide]                PROVIDE (__noinit_end, .)
-                0x0080006f                _end = .
+                0x0080007c                _end = .
                 [!provide]                PROVIDE (__heap_start, .)
 
 .eeprom         0x00810000        0x0
@@ -576,60 +599,60 @@ END GROUP
 .debug_sfnames
  *(.debug_sfnames)
 
-.debug_aranges  0x00000000       0xb0
+.debug_aranges  0x00000000       0xe0
  *(.debug_aranges)
  .debug_aranges
                 0x00000000       0x20 main.o
  .debug_aranges
                 0x00000020       0x60 MCAL/timer.o
  .debug_aranges
-                0x00000080       0x30 MCAL/uart.o
+                0x00000080       0x60 MCAL/uart.o
 
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000      0xcfe
+.debug_info     0x00000000      0xe90
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x00000000      0x4e6 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.6.364/gcc/dev/atmega32/avr5/crtatmega32.o
- .debug_info    0x000004e6      0x281 main.o
- .debug_info    0x00000767      0x316 MCAL/timer.o
- .debug_info    0x00000a7d      0x281 MCAL/uart.o
+ .debug_info    0x000004e6      0x29c main.o
+ .debug_info    0x00000782      0x316 MCAL/timer.o
+ .debug_info    0x00000a98      0x3f8 MCAL/uart.o
 
-.debug_abbrev   0x00000000      0x7ef
+.debug_abbrev   0x00000000      0x834
  *(.debug_abbrev)
  .debug_abbrev  0x00000000      0x4a3 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.6.364/gcc/dev/atmega32/avr5/crtatmega32.o
- .debug_abbrev  0x000004a3       0xfc main.o
- .debug_abbrev  0x0000059f      0x14e MCAL/timer.o
- .debug_abbrev  0x000006ed      0x102 MCAL/uart.o
+ .debug_abbrev  0x000004a3       0xf6 main.o
+ .debug_abbrev  0x00000599      0x14e MCAL/timer.o
+ .debug_abbrev  0x000006e7      0x14d MCAL/uart.o
 
-.debug_line     0x00000000      0xad2
+.debug_line     0x00000000      0xbf2
  *(.debug_line .debug_line.* .debug_line_end)
  .debug_line    0x00000000      0x116 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.6.364/gcc/dev/atmega32/avr5/crtatmega32.o
- .debug_line    0x00000116       0x91 main.o
- .debug_line    0x000001a7      0x64f MCAL/timer.o
- .debug_line    0x000007f6      0x2dc MCAL/uart.o
+ .debug_line    0x00000116       0x9f main.o
+ .debug_line    0x000001b5      0x64f MCAL/timer.o
+ .debug_line    0x00000804      0x3ee MCAL/uart.o
 
-.debug_frame    0x00000000      0x300
+.debug_frame    0x00000000      0x474
  *(.debug_frame)
  .debug_frame   0x00000000       0x34 main.o
  .debug_frame   0x00000034      0x288 MCAL/timer.o
- .debug_frame   0x000002bc       0x44 MCAL/uart.o
+ .debug_frame   0x000002bc      0x1b8 MCAL/uart.o
 
-.debug_str      0x00000000      0x5e2
+.debug_str      0x00000000      0x6d7
  *(.debug_str)
  .debug_str     0x00000000      0x196 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.6.364/gcc/dev/atmega32/avr5/crtatmega32.o
- .debug_str     0x00000196      0x26b main.o
-                                0x2b3 (size before relaxing)
- .debug_str     0x00000401      0x1a6 MCAL/timer.o
+ .debug_str     0x00000196      0x279 main.o
+                                0x2c8 (size before relaxing)
+ .debug_str     0x0000040f      0x1a6 MCAL/timer.o
                                 0x31a (size before relaxing)
- .debug_str     0x000005a7       0x3b MCAL/uart.o
-                                0x2dd (size before relaxing)
+ .debug_str     0x000005b5      0x122 MCAL/uart.o
+                                0x3d2 (size before relaxing)
 
-.debug_loc      0x00000000      0x73d
+.debug_loc      0x00000000      0xaea
  *(.debug_loc)
- .debug_loc     0x00000000       0x5a main.o
- .debug_loc     0x0000005a      0x61c MCAL/timer.o
- .debug_loc     0x00000676       0xc7 MCAL/uart.o
+ .debug_loc     0x00000000       0x47 main.o
+ .debug_loc     0x00000047      0x61c MCAL/timer.o
+ .debug_loc     0x00000663      0x487 MCAL/uart.o
 
 .debug_macinfo
  *(.debug_macinfo)
@@ -649,11 +672,11 @@ END GROUP
 .debug_pubtypes
  *(.debug_pubtypes)
 
-.debug_ranges   0x00000000       0x98
+.debug_ranges   0x00000000       0xc8
  *(.debug_ranges)
  .debug_ranges  0x00000000       0x10 main.o
  .debug_ranges  0x00000010       0x50 MCAL/timer.o
- .debug_ranges  0x00000060       0x38 MCAL/uart.o
+ .debug_ranges  0x00000060       0x68 MCAL/uart.o
 
 .debug_macro
  *(.debug_macro)

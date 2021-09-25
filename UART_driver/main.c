@@ -10,16 +10,15 @@
 int main(void)
 {
     /*Replace with your application code */
-	uart_config conf = {2400, asynchronous,one_stop_bit,no_parity, eight_bit, Disable};
-	uart_init(&conf);
-	//SETBIT(UCSRA, bit1);
-	uart_send_byte('A',&conf);
-
+	uart_config conf = {2400, asynchronous, one_stop_bit, no_parity, eight_bit, Disable};
+	uart_init(conf);
+	uint8_t* string = "";
     while (1) 
     {
-		uint8_t data = uart_receive_byte(&conf);
-		uart_send_byte(data,&conf);
-		
+		uart_receive_string(string);
+		uart_send_byte(new_line);
+		uart_send_string(string);
+		uart_send_byte(new_line);
     }
 }
 
