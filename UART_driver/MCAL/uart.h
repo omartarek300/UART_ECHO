@@ -10,7 +10,7 @@
 #define UART_H_
 #include "../MC/My_avr.h"
 #include "../bit_operations.h"
-#define F_CPU 1000000UL
+#define F_CPU 8000000UL
 #define Enable 1
 #define Disable 0
 /********************************** GLOBAL VARIABLES *************************************/
@@ -26,15 +26,15 @@ typedef enum
 }stop_bit;
 typedef enum
 {
-	asynchronous = 16, asynchronous_double_speed = 8, synchronous = 2
+	asynchronous = 16UL, asynchronous_double_speed = 8UL, synchronous = 2UL
 }modes;
 typedef enum
 {
-	disabled, reserved, even_parity, odd_parity
+	no_parity, reserved, even_parity, odd_parity
 }parity_mode;
 typedef struct
 {
-	uint32_t baud_rate;
+	uint16_tm baud_rate;
 	modes mode;
 	stop_bit stop_bit_en;
 	parity_mode parity;
@@ -45,6 +45,7 @@ typedef struct
 void uart_init(uart_config* conf);
 void uart_send_byte(uint8_t data, uart_config* conf);
 uint8_t uart_receive_byte(uart_config* conf);
+
 /*
 void uart_receive_string();
 void uart_send_byte();

@@ -31,7 +31,7 @@ void uart_init(uart_config* conf)
 		SETBIT(UCSRC, bit0);  //set UCPOL bit
 	}
 	/*enable interrupt*/
-	if(conf->iterrupt = Enable)
+	if(conf->iterrupt == Enable)
 	{
 		SETBIT(UCSRB, bit7); //RX Complete Interrupt Enable
 		SETBIT(UCSRB, bit6); //TX Complete Interrupt Enable
@@ -46,7 +46,7 @@ void uart_init(uart_config* conf)
 	SETBIT(UCSRC, bit7); // enable writing to UCSRC
 	switch(conf->parity) // select parity
 	{
-		case disabled:
+		case no_parity:
 			CLRBIT(UCSRC, bit4);
 			CLRBIT(UCSRC, bit5);
 			break;
@@ -105,10 +105,10 @@ void uart_init(uart_config* conf)
 			break;	
 	}
 	/* Set baud rate */
-	uint32_t UBRR_value = ((F_CPU/(divisor * conf->baud_rate)) - 1);
+	short unsigned int UBRR_value = ((F_CPU/(divisor * conf->baud_rate)) - 1);
 	CLRBIT(UCSRC, bit7); // enable writing to UBRR
-	UBRRH = (uint8_t)(UBRR_value >> 8);
 	UBRRL = (uint8_t)(UBRR_value);
+	UBRRH = (uint8_t)(UBRR_value >> 8);
 }
 void uart_send_byte(uint8_t data, uart_config* conf)
 {
@@ -152,7 +152,7 @@ uint8_t uart_receive_byte(uart_config* conf)
 		ninth_bit = UCSRB;
 		data_eight_bits = UDR;
 		/* If error, return -1 */
-		if ( status & (1<<bit4)|(1<<bit3)|(1<<bit2))
+		if ( status & ((1<<bit4)|(1<<bit3)|(1<<bit2)))
 		return -1;
 		/* Filter the 9th bit, then return */
 		ninth_bit = (ninth_bit >> 1) & 0x01;
